@@ -1,8 +1,13 @@
 {
   "name": "kite",
   "version": "1.0.0",
-  "description": "",
+  "description": "General purpose CLI utility for deploying Docker-based infastructure",
   "main": "index.js",
+  "dependencies": {
+    "shelljs": "^0.5.3",
+    "yargs": "^3.31.0"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,11 +21,5 @@
   "bugs": {
     "url": "https://github.com/jcpst/kite/issues"
   },
-  "homepage": "https://github.com/jcpst/kite#readme",
-  "dependencies": {
-    "colors": "^1.1.2",
-    "commander": "^2.9.0",
-    "shelljs": "^0.5.3",
-    "yargs": "^3.31.0"
-  }
+  "homepage": "https://github.com/jcpst/kite#readme"
 }
