@@ -12,9 +12,12 @@
     "shelljs": "^0.5.3",
     "yargs": "^3.31.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jasmine": "^2.4.1",
+    "jsdoc": "^3.4.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine"
   },
   "repository": {
     "type": "git",
