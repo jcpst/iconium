@@ -75,7 +75,7 @@ var argv = require('yargs')
     .argv
     generateAesKey(argv.file)
   })
-  
+
   .command('encrypt', 'Encrypt a file.', function (yargs) {
     argv = yargs
       .option('i', {
@@ -94,10 +94,10 @@ var argv = require('yargs')
     var token = argv.token || privateToken
     encrypt(sh.cat(argv.input), token).to(argv.output)
   })
-  
+
   .command('decrypt', 'Decrypt a file.', function (yargs) {
     argv = yargs
-      .option('i', { 
+      .option('i', {
         alias: 'input',
         description: 'File to decrypt.' })
       .option('o', {
@@ -123,11 +123,11 @@ var argv = require('yargs')
   })
 
   .command('run', 'Run a docker service.', function (yargs) {
-    argv = yargs.help('h').alias('h', 'help').argv 
+    argv = yargs.help('h').alias('h', 'help').argv
   })
 
   .command('load', 'Pull an image or build a docker service.', function (yargs) {
-    argv = yargs.help('h').alias('h', 'help').argv 
+    argv = yargs.help('h').alias('h', 'help').argv
   })
 
   .default('h')
