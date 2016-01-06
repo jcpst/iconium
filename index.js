@@ -1,57 +1,19 @@
 #!/usr/bin/env node
 
 var crypto = require('crypto')
-var fs = require('fs')
 var path = require('path')
 var EOL = require('os').EOL
-var Docker = require('dockerode')
-var yaml = require('js-yaml')
 var sh = require('shelljs')
+var privacy = require('./lib/privacy.js')
+var main = require('./lib/privacy.js')
 var VERSION = require('./package.json').version
 
 var privateToken = path.join(__dirname, 'kite.aes')
 var services, steps
 
-function generateAesKey (file) {
-  crypto.randomBytes(32).toString('base64').to(file)
-}
-
-function encrypt(text, token) {
-  var cipher = crypto.createCipher('aes-256-cbc', sh.cat(token))
-  var crypted = cipher.update(text, 'utf8', 'base64')
-  crypted += cipher.final('base64')
-  return crypted
-}
-
-function decrypt(text, token) {
-  var decipher = crypto.createDecipher('aes-256-cbc', sh.cat(token))
-  var dec = decipher.update(text, 'base64', 'utf8')
-  dec += decipher.final('utf8')
-  return dec
-}
-
-
-// TODO: STEPS
-// x load yaml
-// . run service based on yml config
-// . call service by step
-// . run each step
-function dockerBuild() {}
-function runStep(stepName) {}
-function runService() {}
-
-function loadYaml(file) {
-  try {
-    return yaml.safeLoad(fs.readFileSync(file, 'utf8'))
-  } catch (e) {
-    console.log('didnt work: ' + e)
-    return ''
-  }
-}
-
 function steps(serviceFile, stepsFile) {
-  services = loadYaml(serviceFile)
-  steps = loadYaml(stepsFile)
+  services = main.loadYaml(serviceFile)
+  steps = main.loadYaml(stepsFile)
 }
 
 // ----------------------------------------------------------------------------
@@ -60,7 +22,9 @@ function steps(serviceFile, stepsFile) {
 var argv = require('yargs')
   .usage('Usage:' + EOL + '  $0 <command> [options]')
 
-  .command('version', '', console.log(VERSION))
+  .command('version', '', function () {
+    console.log(VERSION)
+  })
 
   // --------------------------------------------------------------------------
   // Crypto.
@@ -73,7 +37,7 @@ var argv = require('yargs')
     .help('h')
     .alias('h', 'help')
     .argv
-    generateAesKey(argv.file)
+    privacy.generateAesKey().to(argv.file)
   })
 
   .command('encrypt', 'Encrypt a file.', function (yargs) {
@@ -92,7 +56,7 @@ var argv = require('yargs')
       .alias('h', 'help')
       .argv
     var token = argv.token || privateToken
-    encrypt(sh.cat(argv.input), token).to(argv.output)
+    privacy.encrypt(sh.cat(argv.input), token).to(argv.output)
   })
 
   .command('decrypt', 'Decrypt a file.', function (yargs) {
@@ -111,7 +75,7 @@ var argv = require('yargs')
       .alias('h', 'help')
       .argv
     var token = argv.token || privateToken
-    decrypt(sh.cat(argv.input), token).to(argv.output)
+    privacy.decrypt(sh.cat(argv.input), token).to(argv.output)
   })
 
   // --------------------------------------------------------------------------
