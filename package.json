@@ -13,11 +13,16 @@
     "yargs": "^3.31.0"
   },
   "devDependencies": {
+    "http-server": "^0.8.5",
     "jasmine-node": "^1.14.5",
-    "jsdoc": "^3.4.0"
+    "jsdoc": "^3.4.0",
+    "jsh-cli": "^0.1.3"
   },
   "scripts": {
-    "docs": "jsdoc lib",
+    "clean": "jsh rm -r out",
+    "docs:build": "jsdoc . lib",
+    "docs:serve": "hs out",
+    "docs": "npm run docs:build -s && npm run docs:serve -s",
     "test": "jasmine-node spec"
   },
   "repository": {
