@@ -55,7 +55,7 @@ argv.command('encrypt', 'Encrypt a file.', function (yargs) {
     .demand(['i', 'o'])
     .help('h').alias('h', 'help')
     .argv
-  privacy.encrypt(sh.cat(argv.input), argv.token).to(argv.output)
+  privacy.encrypt(sh.cat(argv.input), sh.cat(argv.token)).to(argv.output)
 })
 
 /******************************************************************************
@@ -79,7 +79,7 @@ argv.command('decrypt', 'Decrypt a file.', function (yargs) {
     .demand(['i', 'o'])
     .help('h').alias('h', 'help')
     .argv
-  privacy.decrypt(sh.cat(argv.input), argv.token).to(argv.output)
+  privacy.decrypt(sh.cat(argv.input), sh.cat(argv.token)).to(argv.output)
 })
 
 
@@ -138,6 +138,10 @@ argv.command('steps', 'Run your steps.', function (yargs) {
     .option('e', {
       alias: 'env',
       description: 'Set an environment variable. (Can use multiple times)'
+    })
+    .option('key-path', {
+      description: 'key for encrypting environment variables.',
+      default: 'kite.aes'
     })
     .option('steps-path', {
       default: 'kite-steps.yml',

@@ -13,11 +13,11 @@
     "yargs": "^3.31.0"
   },
   "devDependencies": {
-    "jasmine": "^2.4.1",
+    "jasmine-node": "^1.14.5",
     "jsdoc": "^3.4.0"
   },
   "scripts": {
-    "test": "jasmine"
+    "test": "jasmine-node spec"
   },
   "repository": {
     "type": "git",
