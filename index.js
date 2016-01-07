@@ -7,17 +7,9 @@ var argv = require('yargs')
 var privacy = require('./lib/privacy.js')
 var main = require('./lib/main.js')
 var VERSION = require('./package.json').version
-
-var privateToken = 'kite.aes'
-var services, steps
-
-function loadSteps(serviceFile, stepsFile) {
-  services = main.loadYaml(serviceFile)
-  steps = main.loadYaml(stepsFile)
-}
+var PRIVATE_TOKEN = 'kite.aes'
 
 argv.usage('Usage:' + EOL + '  $0 <command> [options]')
-argv.command('version', '', function () { console.log(VERSION) })
 
 /******************************************************************************
  * Generate
@@ -26,7 +18,7 @@ argv.command('generate', 'Generate new private token.', function (yargs) {
   argv = yargs
     .option('f', {
       alias: 'file',
-      default: privateToken,
+      default: PRIVATE_TOKEN,
       description: 'Filename to write key to.' 
     })
     .help('h').alias('h', 'help')
@@ -49,7 +41,7 @@ argv.command('encrypt', 'Encrypt a file.', function (yargs) {
     })
     .option('t', {
       alias: 'token',
-      default: privateToken,
+      default: PRIVATE_TOKEN,
       description: 'Path to your token file' 
     })
     .demand(['i', 'o'])
@@ -73,7 +65,7 @@ argv.command('decrypt', 'Decrypt a file.', function (yargs) {
     })
     .option('t', {
       alias: 'token',
-      default: privateToken,
+      default: PRIVATE_TOKEN,
       description: 'Path to your token file'
     })
     .demand(['i', 'o'])
@@ -171,6 +163,8 @@ argv.command('load', 'Pull an image or build a docker service.', function (yargs
 })
 
 argv.help('h').alias('h', 'help')
+argv.version(VERSION, 'v').alias('v', 'version')
+argv.getOptions().boolean.splice(-2)
 argv.epilog('Use "kite [command] (-h|--help)" for more information.')
 argv.argv
 
