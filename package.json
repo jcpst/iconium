@@ -17,6 +17,7 @@
     "jsdoc": "^3.4.0"
   },
   "scripts": {
+    "docs": "jsdoc lib",
     "test": "jasmine-node spec"
   },
   "repository": {
