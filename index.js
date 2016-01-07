@@ -1,48 +1,46 @@
 #!/usr/bin/env node
 
-var crypto = require('crypto')
 var EOL = require('os').EOL
 var sh = require('shelljs')
 var argv = require('yargs')
 var privacy = require('./lib/privacy.js')
-var main = require('./lib/main.js')
 var VERSION = require('./package.json').version
 var PRIVATE_TOKEN = 'kite.aes'
 
 argv.usage('Usage:' + EOL + '  $0 <command> [options]')
 
-/******************************************************************************
+/* ****************************************************************************
  * Generate
- *****************************************************************************/
+ * ***************************************************************************/
 argv.command('generate', 'Generate new private token.', function (yargs) {
   argv = yargs
     .option('f', {
       alias: 'file',
       default: PRIVATE_TOKEN,
-      description: 'Filename to write key to.' 
+      description: 'Filename to write key to.'
     })
     .help('h').alias('h', 'help')
     .argv
   privacy.generateAesKey().to(argv.file)
 })
 
-/******************************************************************************
+/* ****************************************************************************
  * Encrypt
- *****************************************************************************/
+ * ***************************************************************************/
 argv.command('encrypt', 'Encrypt a file.', function (yargs) {
   argv = yargs
     .option('i', {
       alias: 'input',
-      description: 'File to encrypt.' 
+      description: 'File to encrypt.'
     })
     .option('o', {
       alias: 'output',
-      description: 'Name of output file.' 
+      description: 'Name of output file.'
     })
     .option('t', {
       alias: 'token',
       default: PRIVATE_TOKEN,
-      description: 'Path to your token file' 
+      description: 'Path to your token file'
     })
     .demand(['i', 'o'])
     .help('h').alias('h', 'help')
@@ -50,9 +48,9 @@ argv.command('encrypt', 'Encrypt a file.', function (yargs) {
   privacy.encrypt(sh.cat(argv.input), sh.cat(argv.token)).to(argv.output)
 })
 
-/******************************************************************************
+/* ****************************************************************************
  * Decrypt
- *****************************************************************************/
+ * ***************************************************************************/
 argv.command('decrypt', 'Decrypt a file.', function (yargs) {
   argv = yargs
     .option('i', {
@@ -74,10 +72,9 @@ argv.command('decrypt', 'Decrypt a file.', function (yargs) {
   privacy.decrypt(sh.cat(argv.input), sh.cat(argv.token)).to(argv.output)
 })
 
-
-/******************************************************************************
+/* ****************************************************************************
  * Steps
- *****************************************************************************/
+ * ***************************************************************************/
 argv.command('steps', 'Run your steps.', function (yargs) {
   argv = yargs
     .option('ci', {
@@ -145,19 +142,18 @@ argv.command('steps', 'Run your steps.', function (yargs) {
     })
     .help('h').alias('h', 'help')
     .argv
-  loadSteps(argv.stepsPath, argv.servicesPath)
 })
 
-/******************************************************************************
+/* ****************************************************************************
  * Run
- *****************************************************************************/
+ * ***************************************************************************/
 argv.command('run', 'Run a docker service.', function (yargs) {
   argv = yargs.help('h').alias('h', 'help').argv
 })
 
-/******************************************************************************
+/* ****************************************************************************
  * Load
- *****************************************************************************/
+ * ***************************************************************************/
 argv.command('load', 'Pull an image or build a docker service.', function (yargs) {
   argv = yargs.help('h').alias('h', 'help').argv
 })

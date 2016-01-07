@@ -16,14 +16,23 @@
     "http-server": "^0.8.5",
     "jasmine-node": "^1.14.5",
     "jsdoc": "^3.4.0",
-    "jsh-cli": "^0.1.3"
+    "jsh-cli": "^0.1.3",
+    "standard": "^5.4.1"
   },
   "scripts": {
     "clean": "jsh rm -r out",
     "docs:build": "jsdoc . lib",
     "docs:serve": "hs out",
     "docs": "npm run docs:build -s && npm run docs:serve -s",
-    "test": "jasmine-node spec"
+    "test:style": "standard",
+    "test:code": "jasmine-node spec",
+    "test": "npm run test:style -s && npm run test:code -s"
+  },
+  "standard": {
+    "ignore": [
+      "out",
+      "spec"
+    ]
   },
   "repository": {
     "type": "git",
