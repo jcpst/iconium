@@ -36,7 +36,9 @@
       "spec"
     ]
   },
-  "pre-commit": [ "test" ]
+  "pre-commit": [
+    "test"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jcpst/iconium.git"
