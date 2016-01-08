@@ -1,6 +1,6 @@
 {
   "name": "kite",
-  "version": "1.0.0",
+  "version": "0.2.5",
   "description": "General purpose CLI utility for deploying Docker-based infastructure",
   "bin": {
     "kite": "index.js"
@@ -22,6 +22,7 @@
   "scripts": {
     "clean": "jsh rm -r out",
     "docs:build": "jsdoc . lib",
+    "docs:deploy": "jsdoc . -d /tmp/__temp_static_content",
     "docs:serve": "hs out",
     "docs": "npm run docs:build -s && npm run docs:serve -s",
     "test:style": "standard",
