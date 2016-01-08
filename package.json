@@ -10,6 +10,8 @@
     "dockerode": "^2.2.8",
     "js-yaml": "^3.4.6",
     "shelljs": "^0.5.3",
+    "tar-fs": "^1.9.0",
+    "winston": "^2.1.1",
     "yargs": "^3.31.0"
   },
   "devDependencies": {
@@ -31,14 +33,10 @@
     "test": "npm run test:style -s && npm run test:code -s"
   },
   "standard": {
-    "ignore": [
-      "out",
-      "spec"
-    ]
+    "globals": [ "describe", "it", "expect" ],
+    "ignore": [ "out" ]
   },
-  "pre-commit": [
-    "test"
-  ],
+  "pre-commit": [ "test" ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jcpst/iconium.git"

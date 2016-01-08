@@ -5,7 +5,7 @@ var key = privacy.generateAesKey()
 var encryptedValue = privacy.encrypt(testString, key)
 var decryptedValue = privacy.decrypt(encryptedValue, key)
 
-function base64Regex() {
+var base64Regex = function () {
   var regex = '(?:[A-Za-z0-9+\/]{4}\\n?)*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)'
   return new RegExp('(?:^' + regex + '$)')
 }

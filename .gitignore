@@ -1,5 +1,5 @@
 *.aes
-*.swp
+**/*.swp
 # Logs
 logs
 *.log
