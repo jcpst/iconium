@@ -3,7 +3,7 @@
   "version": "0.2.5",
   "description": "General purpose CLI utility for deploying Docker-based infastructure",
   "bin": {
-    "ico": "index.js"
+    "iconium": "index.js"
   },
   "main": "index.js",
   "dependencies": {
