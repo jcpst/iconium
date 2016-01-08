@@ -5,7 +5,7 @@ var sh = require('shelljs')
 var argv = require('yargs')
 var privacy = require('./lib/privacy.js')
 var VERSION = require('./package.json').version
-var PRIVATE_TOKEN = 'kite.aes'
+var PRIVATE_TOKEN = 'iconium.aes'
 
 argv.usage('Usage:' + EOL + '  $0 <command> [options]')
 
@@ -130,14 +130,14 @@ argv.command('steps', 'Run your steps.', function (yargs) {
     })
     .option('key-path', {
       description: 'key for encrypting environment variables.',
-      default: 'kite.aes'
+      default: PRIVATE_TOKEN
     })
     .option('steps-path', {
-      default: 'kite-steps.yml',
+      default: 'iconium-steps.yml',
       description: 'Path to steps.yml file.'
     })
     .option('services-path', {
-      default: 'kite-services.yml',
+      default: 'iconium-services.yml',
       description: 'Path to services.yml file.'
     })
     .help('h').alias('h', 'help')

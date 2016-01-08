@@ -1,9 +1,9 @@
 {
-  "name": "kite",
+  "name": "iconium",
   "version": "0.2.5",
   "description": "General purpose CLI utility for deploying Docker-based infastructure",
   "bin": {
-    "kite": "index.js"
+    "ico": "index.js"
   },
   "main": "index.js",
   "dependencies": {
@@ -37,13 +37,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jcpst/kite.git"
+    "url": "git+https://github.com/jcpst/iconium.git"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jcpst/kite/issues"
+    "url": "https://github.com/jcpst/iconium/issues"
   },
-  "homepage": "https://github.com/jcpst/kite#readme"
+  "homepage": "https://github.com/jcpst/iconium#readme"
 }
