@@ -16,6 +16,7 @@
     "http-server": "^0.8.5",
     "jasmine-node": "^1.14.5",
     "jsdoc": "^3.4.0",
+    "pre-commit": "^1.1.2",
     "rimraf": "^2.5.0",
     "standard": "^5.4.1"
   },
@@ -35,6 +36,7 @@
       "spec"
     ]
   },
+  "pre-commit": [ "test" ]
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jcpst/iconium.git"
