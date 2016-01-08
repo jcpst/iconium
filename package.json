@@ -16,13 +16,13 @@
     "http-server": "^0.8.5",
     "jasmine-node": "^1.14.5",
     "jsdoc": "^3.4.0",
-    "jsh-cli": "^0.1.3",
+    "rimraf": "^2.5.0",
     "standard": "^5.4.1"
   },
   "scripts": {
-    "clean": "jsh rm -r out",
-    "docs:build": "jsdoc . lib",
-    "docs:deploy": "jsdoc . -d /tmp/__temp_static_content",
+    "clean": "rimraf rm -r out",
+    "docs:build": "jsdoc -c conf.json",
+    "docs:deploy": "jsdoc -c conf.json -d /tmp/static_content",
     "docs:serve": "hs out",
     "docs": "npm run docs:build -s && npm run docs:serve -s",
     "test:style": "standard",
